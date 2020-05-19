@@ -16,15 +16,8 @@ class FeedBottom extends Component{
         this.state = {
             commentList: [],
             commentText : "",
-            button : "btn1",
-            users:[]
-        }
-    }
 
-    componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(response => this.setState({users:response}))
+        }
     }
 
     addComment = (e) => {
@@ -60,9 +53,8 @@ class FeedBottom extends Component{
     // }
 
     render(){
-        console.log("State => ",this.state)
+        
         const comment = this.state.commentList.map((comment,i) => {return<Comment key={i} text={comment}/>});
-        const test = this.state.users.map((user,i) => {return <div>{user.name}</div>});
         return(
             <div className = "FeedBottom">
                 <div className = "feed_icon_sec">        
