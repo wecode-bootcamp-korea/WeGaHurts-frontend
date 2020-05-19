@@ -1,0 +1,30 @@
+.Comment:first-of-type{
+    display: none;
+}
+.Comment{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    .front{
+        display: flex;
+        display: -webkit-flex;
+        .id{
+            font-weight: 600;
+        }
+        .text{
+            font-weight: 400;
+            margin-left: 4px;
+        }
+    }
+    .like{
+        button{
+            background-color: white;
+            border: none;
+            padding: 0px;
+        }
+        img{
+            width: 12px;
+            height: 12px;
+        }
+    }
+}

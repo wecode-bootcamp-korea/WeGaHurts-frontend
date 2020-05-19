@@ -1,0 +1,38 @@
+.FeedNav{
+    width: 100%;
+    padding: 12px 16px;
+    border-bottom: 1px;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    .profile_pic{
+        img{
+            height: 32px;
+        }
+    }
+    .try{
+        width: 550px;
+        margin-left: 16px;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: space-between;
+        .account_name{
+            display: -webkit-flex;
+            display: flex;
+            align-items: center;
+        }
+        .more{
+            button{
+                border: none;
+                background-color: white;
+                img{
+                    width: 24px;
+                }
+            }
+        }
+    }
+}
+
+
+
+

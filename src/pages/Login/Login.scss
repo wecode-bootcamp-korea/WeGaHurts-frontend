@@ -1,0 +1,157 @@
+
+#login_section{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: 350px;
+    .login{
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(222, 222, 222);
+        height: 380px;
+        width: 100%;
+        margin-bottom: 10px;
+        #logo_wrap{
+            background-color: rgb(255, 255, 255);
+            height: 120px;
+            img{
+                background-color: rgb(255, 255, 255);
+                margin-top: 30px;
+                width: 180px;
+            }
+        }
+        .test{
+            .input_wrap{   
+                background-color: rgb(255, 255, 255);
+                input{
+                    width: 265px;
+                    height:36px;
+                    margin-bottom: 5px;
+                    border-radius: 3px;
+                    border: 0.5px solid rgb(222, 222, 222);
+                    padding-left: 8px;
+                }
+            }
+        }
+        #login_button_wrap{
+            background-color: rgb(255, 255, 255);
+            height: 46px;
+            .button1{
+                background-color: #BEDFFD;
+                border-style: none;
+                color: white;
+                height: 30px;
+                width: 265px;
+                border-radius: 3px;
+            }
+            .button2{
+                background-color: #0095F6;
+                border-style: none;
+                color: white;
+                height: 30px;
+                width: 265px;
+                border-radius: 3px;
+            }
+        }
+        #or_container{
+            background-color: rgb(255, 255, 255);
+            color: rgb(156, 152, 160);
+            height: 30px;
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            #or{
+                display: flex;
+                display: -webkit-flex;
+                justify-content: space-between;
+                background-color: rgb(255, 255, 255);
+                width: 274px;
+                .line{
+                    background-color: rgb(255, 255, 255);
+                    border-top: 1px solid rgb(222, 222, 222);
+                    width:40%;
+                    margin-top: 9px;
+                }
+                .text{
+                    background-color: rgb(255, 255, 255);
+                
+                }
+            }
+        }
+        #fb_login{
+            background-color: rgb(255, 255, 255);
+            color: rgb(56, 81, 133);
+            height: 55px;  
+            margin-top: 20px;
+            a{
+                background-color: rgb(255, 255, 255);
+            }
+        }
+        #forgot_pw{
+            margin-top: -15px;
+            background-color: rgb(255, 255, 255);
+            color: 	rgb(88, 124, 158);
+            height: 30px;
+            font-size: 12px;
+            a{
+                background-color: rgb(255, 255, 255);
+            }
+        }
+    }
+    .sign_up{
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(222, 222, 222);
+        height: 63px;
+        width:100%;
+        display: flex;
+        display: -webkit-flex;
+        justify-content: center;
+        font-size: 14px;
+        #text, #button{
+            background-color: rgb(255, 255, 255);
+        
+            display: -webkit-flex;
+            display: flex;
+            height: 18px;
+            margin:auto;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        #button{
+            padding-left: 2px;
+            font-weight: bold;
+            color: rgb(74, 174, 248);
+        }
+    }
+    .app{
+        display: flex;
+        display: -webkit-flex;
+        height: 38px;
+        width:100%;
+        p{
+            margin: auto;
+            margin-top: 17px;
+            font-size: 14px;
+        }
+    }
+    .app_button{
+        height: 64px;
+        width: 100%;
+        display: flex;
+        display: -webkit-flex;
+        align-items: center;
+        justify-content: center;
+        img{ 
+            display: -webkit-flex;
+            display: flex;
+            align-self: center;
+            height: 40px;
+            width: 136px;
+            margin:0px 5px;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+.MainBody{
+    position: relative;
+    top: 54px;
+
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    /*main rewrap box*/
+    .main_rewrap{
+        margin-top: 30px;
+        width: 935px;
+        display: flex;
+        display: -webkit-flex;
+        justify-content: center;
+    }
+}
