@@ -9,7 +9,7 @@ class Comment extends Component{
             <div className = "Comment">
                 <div className = "front">
                     <div className = "id">
-                        <span>alex_1998</span>
+                        <span>{this.props.id}</span>
                     </div>
                     <div className = "text">
                         <span>{this.props.text}</span>

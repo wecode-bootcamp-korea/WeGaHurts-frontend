@@ -1,5 +1,5 @@
 
-#login_section{
+#SignUp_section{
     position: fixed;
     top: 50%;
     left: 50%;
@@ -9,7 +9,7 @@
     flex-direction: column;
     text-align: center;
     max-width: 350px;
-    .login{
+    .SignUp{
         background-color: rgb(255, 255, 255);
         border: 1px solid rgb(222, 222, 222);
         height: 380px;
@@ -98,16 +98,6 @@
                 background-color: rgb(255, 255, 255);
             }
         }
-        #forgot_pw{
-            margin-top: -15px;
-            background-color: rgb(255, 255, 255);
-            color: 	rgb(88, 124, 158);
-            height: 30px;
-            font-size: 12px;
-            a{
-                background-color: rgb(255, 255, 255);
-            }
-        }
     }
     .sign_up{
         background-color: rgb(255, 255, 255);
@@ -118,7 +108,7 @@
         display: -webkit-flex;
         justify-content: center;
         font-size: 14px;
-        #text, button{
+        #text, #button{
             background-color: rgb(255, 255, 255);
         
             display: -webkit-flex;
@@ -128,11 +118,9 @@
             margin-left: 0;
             margin-right: 0;
         }
-        button{
-            align-content: center;
+        #button{
             padding-left: 2px;
             font-weight: bold;
-            border: none;
             color: rgb(74, 174, 248);
         }
     }
