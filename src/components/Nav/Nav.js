@@ -10,6 +10,10 @@ import profilePic from "../../images/profilepic.PNG";
 import "./Nav.scss"
 
 class Nav extends Component{
+    logOut = () => {
+        localStorage.removeItem("token");
+        this.props.props.history.push('/');
+    }
     render() {
         return (
             <div className="Nav">
@@ -47,7 +51,7 @@ class Nav extends Component{
                             </div>
                             <div id="goto_profile">
                                 <a>
-                                    <img src= { profilePic } alt = "profile pic"/>
+                                    <img src= { profilePic } alt = "profile pic" onClick = {this.logOut}/>
                                 </a>
                             </div>
                         </div>

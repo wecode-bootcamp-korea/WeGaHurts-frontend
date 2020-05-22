@@ -16,17 +16,30 @@ class FeedBottom extends Component{
         this.state = {
             commentList: [],
             commentText : "",
-
+            button : "btn1"
         }
     }
 
     addComment = (e) => {
         e.preventDefault();
-
+        
         if(this.state.commentText.length>0){
-            let tmp = [...this.state.commentList]; // spread operator
-            tmp.push(this.state.commentText);
-            this.setState({commentList: tmp, commentText: ""}, () => this.setBtnColor());
+            let token = localStorage.getItem('token');
+            fetch('http://10.58.5.83:8000/comment', {
+                method: 'POST',
+                headers: {
+                    'Authorization': token
+                },
+                body: JSON.stringify({
+                    'content':this.state.commentText
+                })
+            })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response.data)
+                this.setState({commentList: response.data})
+            });
+            this.setState({commentText: ""}, () => this.setBtnColor());
         }
 
     }
@@ -51,10 +64,23 @@ class FeedBottom extends Component{
     //         this.addComment();
     //     }
     // }
+   
+    componentDidMount(){
+        let token = localStorage.getItem('token');
+        fetch('http://10.58.5.83:8000/comment', {
+            headers: {
+                'Authorization': token
+            }
+        })
+        .then(response => response.json())
+        .then(response => {
+            this.setState({commentList: response.data})
+        })
+    }
 
     render(){
         
-        const comment = this.state.commentList.map((comment,i) => {return<Comment key={i} text={comment}/>});
+        const comment = this.state.commentList.map((comment,i) => {return<Comment key={i} id={comment.name} text={comment.content} time={comment.created_at}/>});
         return(
             <div className = "FeedBottom">
                 <div className = "feed_icon_sec">        

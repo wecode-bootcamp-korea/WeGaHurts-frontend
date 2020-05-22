@@ -23,14 +23,39 @@ class Login extends Component{
     }
 
     handleToMain(event){
+        event.preventDefault();
         console.log('id', this.state.idInput);
         console.log('pw', this.state.pwInput);
-        if(this.state.idInput.includes('@') && this.state.pwInput.length>4){
-            this.props.history.push('/Main');
+        if(this.state.idInput.length>4 && this.state.pwInput.length>4){
+            
+            fetch('http://10.58.5.83:8000/account/sign-in', {
+                method: 'POST',
+                body: JSON.stringify({
+                    'name': this.state.idInput,
+                    'password': this.state.pwInput
+                })
+            })
+            .then(response => response.json())
+            .then(response => {
+                if (response.Authorization) {
+                    this.props.history.push('/Main');
+                    localStorage.setItem('token', response.Authorization);
+                }else{
+                    alert('This ID/Pw pair is invalid');
+                }
+            })
+             
+        }else{
+            alert("PassWord and ID should be more than 4 letters");
         }
     }
+
+    handleToSignUp = () => {
+        this.props.history.push('/SignUp');
+    }
+
     setButtonColor = () => {
-        if(this.state.idInput.includes('@') && this.state.pwInput.length>4){
+        if(this.state.idInput.length>4 && this.state.pwInput.length>4){
             this.setState({btnColor:'button2'});
         }else{
             this.setState({btnColor:'button1'});
@@ -81,9 +106,9 @@ class Login extends Component{
                     <div id = "text">
                         Don't have an account?
                     </div>
-                    <a id = "button">
+                    <button onClick = {this.handleToSignUp} id = "button">
                         Sign up
-                    </a>
+                    </button>
                 </div>
                 <div className = "app">
                     <p>Get the app.</p>

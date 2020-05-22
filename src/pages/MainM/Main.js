@@ -8,7 +8,7 @@ class Main extends Component{
     return (
       <div>
       
-        <Nav />
+        <Nav props = {this.props}/>
         <MainBody />
 
       </div> 
