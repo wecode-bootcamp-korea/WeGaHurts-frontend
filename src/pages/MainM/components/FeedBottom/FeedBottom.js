@@ -25,7 +25,7 @@ class FeedBottom extends Component{
         
         if(this.state.commentText.length>0){
             let token = localStorage.getItem('token');
-            fetch('http://localhost:8000/comment', {
+            fetch('http://10.58.5.83:8000/comment', {
                 method: 'POST',
                 headers: {
                     'Authorization': token
@@ -36,8 +36,9 @@ class FeedBottom extends Component{
             })
             .then(response => response.json())
             .then(response => {
+                console.log(response.data)
                 this.setState({commentList: response.data})
-            })
+            });
             this.setState({commentText: ""}, () => this.setBtnColor());
         }
 
@@ -64,22 +65,22 @@ class FeedBottom extends Component{
     //     }
     // }
    
-    // componentDidMount(){
-    //     let token = localStorage.getItem('token');
-    //     fetch('http://localhost:8000/login/', {
-    //         headers: {
-    //             'Authorization': token
-    //         }
-    //     })
-    //     .then(response => response.json())
-    //     .then(response => {
-    //         this.setState({commentList: response})
-    //     })
-    // }
+    componentDidMount(){
+        let token = localStorage.getItem('token');
+        fetch('http://10.58.5.83:8000/comment', {
+            headers: {
+                'Authorization': token
+            }
+        })
+        .then(response => response.json())
+        .then(response => {
+            this.setState({commentList: response.data})
+        })
+    }
 
     render(){
         
-        const comment = this.state.commentList.map((comment,i) => {return<Comment key={i} id={comment.id} text={comment.text}/>});
+        const comment = this.state.commentList.map((comment,i) => {return<Comment key={i} id={comment.name} text={comment.content} time={comment.created_at}/>});
         return(
             <div className = "FeedBottom">
                 <div className = "feed_icon_sec">        

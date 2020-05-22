@@ -3,7 +3,22 @@ import heart from "../../../../images/heart.png";
 
 import "./Comment.scss";
 
+
 class Comment extends Component{
+    deleteComment = () => {
+        if(this.state.commentText.length>0){
+            let token = localStorage.getItem('token');
+            fetch('http://10.58.5.83:8000/comment', {
+                method: 'POST',
+                headers: {
+                    'Authorization': token
+                },
+                body: JSON.stringify({
+                    'content':this.props.text
+                })
+            })
+        }
+    }
     render(){
         return(
             <div className = "Comment">
@@ -16,7 +31,8 @@ class Comment extends Component{
                     </div>        
                 </div>        
                 <div className = "like">
-                    <button>
+                    <span>{(this.props.time).slice(8,10)}</span>
+                    <button onClick = {this.deleteComment}>
                         <img src = { heart }/>
                     </button>
                 </div>

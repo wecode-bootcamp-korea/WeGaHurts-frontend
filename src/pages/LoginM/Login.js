@@ -4,16 +4,15 @@ import instaLogo from "../../images/logoinsta.png";
 import appStore from "../../images/appstore.png";
 import googlePlay from "../../images/googleplay.png";
 
-import "./SignUp.scss";
+import "./Login.scss";
 
-class SignUp extends Component{
+class Login extends Component{
 
     constructor(){
         super();
         this.state = {
             idInput: '',
             pwInput: '',
-            emailInput: '',
             btnColor: 'button1'
         }
     }
@@ -23,33 +22,40 @@ class SignUp extends Component{
         this.setState({ [e.target.name] : e.target.value},()=>this.setButtonColor())
     }
 
-    handleToLogin(event){
-        
-        console.log('id => ', this.state.idInput);
-        console.log('pw => ', this.state.pwInput);
-        console.log('email => ', this.state.emailInput);
-        if(this.state.emailInput.includes('@') && this.state.pwInput.length>4 && this.state.idInput.length>4){
-            fetch('http://localhost:8000/account/sign-up', {
+    handleToMain(event){
+        event.preventDefault();
+        console.log('id', this.state.idInput);
+        console.log('pw', this.state.pwInput);
+        if(this.state.idInput.length>4 && this.state.pwInput.length>4){
+            
+            fetch('http://10.58.5.83:8000/account/sign-in', {
                 method: 'POST',
                 body: JSON.stringify({
                     'name': this.state.idInput,
-                    'password': this.state.pwInput,
-                    'email': this.state.emailInput
+                    'password': this.state.pwInput
                 })
             })
+            .then(response => response.json())
             .then(response => {
-                if (response.status==200) {
-                    this.props.history.push('/');
+                if (response.Authorization) {
+                    this.props.history.push('/Main');
+                    localStorage.setItem('token', response.Authorization);
                 }else{
-                    alert('This Email is already Registered');
+                    alert('This ID/Pw pair is invalid');
                 }
             })
+             
         }else{
-            alert("PassWord and ID should be more than 4 letters \nEmail should include @");
+            alert("PassWord and ID should be more than 4 letters");
         }
     }
+
+    handleToSignUp = () => {
+        this.props.history.push('/SignUp');
+    }
+
     setButtonColor = () => {
-        if(this.state.emailInput.includes('@') && this.state.pwInput.length>4 && this.state.idInput.length>4){
+        if(this.state.idInput.length>4 && this.state.pwInput.length>4){
             this.setState({btnColor:'button2'});
         }else{
             this.setState({btnColor:'button1'});
@@ -58,25 +64,22 @@ class SignUp extends Component{
 
     render(){
         return(
-            <main id = "SignUp_section">
-                <div className = "SignUp">
+            <main id = "login_section">
+                <div className = "login">
                     <div id = "logo_wrap">
                         <img src = { instaLogo } alt = "instagram logo"/>
                     </div>
                     <form>
                     <div className = "test">
                         <div className = "input_wrap">
-                            <input  name = "idInput" onChange = {this.handleChange} id = "id" type = "text" placeholder = "Username"/>
+                            <input  name = "idInput" onChange = {this.handleChange} id = "id" type = "text" placeholder = "Phone number, username, or email"/>
                         </div>
                         <div className = "input_wrap" >
                             <input  name = "pwInput" onChange = {this.handleChange} id = "pw" type = "password" placeholder = "Password"/>
                         </div>
-                        <div className = "input_wrap" >
-                            <input  name = "emailInput" onChange = {this.handleChange} id = "email" type = "text" placeholder = "email"/>
-                        </div>
                     </div>
-                    <div onClick={this.handleToLogin.bind(this)} id = "login_button_wrap">
-                        <button  className = {this.state.btnColor} >Sign Up</button>
+                    <div onClick={this.handleToMain.bind(this)} id = "login_button_wrap">
+                        <button  className = {this.state.btnColor} >Log in</button>
                     </div>
                     </form>                    
                     <div id = "or_container">
@@ -93,14 +96,19 @@ class SignUp extends Component{
                             Log in with Facebook
                         </a>                    
                     </div>
+                    <div id = "forgot_pw">
+                        <a >
+                            Forgot password?
+                        </a>
+                    </div>
                 </div>
                 <div className = "sign_up">
                     <div id = "text">
                         Don't have an account?
                     </div>
-                    <a id = "button">
+                    <button onClick = {this.handleToSignUp} id = "button">
                         Sign up
-                    </a>
+                    </button>
                 </div>
                 <div className = "app">
                     <p>Get the app.</p>
@@ -118,4 +126,4 @@ class SignUp extends Component{
     }
 }
 
-export default SignUp;
+export default Login;
